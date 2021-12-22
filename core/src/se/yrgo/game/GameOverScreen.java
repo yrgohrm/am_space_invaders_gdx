@@ -43,6 +43,8 @@ public class GameOverScreen extends ScreenAdapter implements InputProcessor {
     @Override
     public void dispose() {
         bigFont.dispose();
+        smallFont.dispose();
+        alienHead.dispose();
         batch.dispose();
     }
 
