@@ -2,6 +2,12 @@ package se.yrgo.game;
 
 import com.badlogic.gdx.Game;
 
+/**
+ * This is the class for the main game. It controlls the different
+ * screens that exist. Screens lets us divide our program into
+ * separate entities that need different handling such as
+ * menus, different game modes, end screens etc.
+ */
 public class AlienGame extends Game {
 	private GameScreen gameScreen;
 	private GameOverScreen gameOverScreen;

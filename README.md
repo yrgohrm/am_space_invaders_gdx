@@ -11,3 +11,7 @@ To build you will need Gradle installed on your system. Download and install the
 To build the project run `gradle build`.
 
 To run the program run `gradle run`.
+
+## More info about GDX
+
+For more info about libGDX visit [libgdx.com](https://libgdx.com/).

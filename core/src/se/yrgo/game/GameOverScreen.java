@@ -10,6 +10,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+/**
+ * Screen for game over. Shows the points for the last game
+ * and will start a new game for any keypress. 
+ * 
+ */
 public class GameOverScreen extends ScreenAdapter implements InputProcessor {
     private AlienGame alienGame;
     private SpriteBatch batch;
@@ -27,6 +32,7 @@ public class GameOverScreen extends ScreenAdapter implements InputProcessor {
         this.alienHead = new AnimatedSprite("alienhead.png", (width/2) - (219/2), 130, 219, 240);
         
         // should maybe use Label instead of drawing with fonts directly
+        // also, scaling bitmap fonts are really ugly
 
         final Color fontColor = Color.FIREBRICK;
 
@@ -55,6 +61,7 @@ public class GameOverScreen extends ScreenAdapter implements InputProcessor {
 
     @Override
     public void render(float delta) {
+        // we need elapsed time for our animations
         elapsedTime += delta;
 
         ScreenUtils.clear(0.75f, 0.75f, 0.75f, 1);
@@ -66,7 +73,6 @@ public class GameOverScreen extends ScreenAdapter implements InputProcessor {
         smallFont.draw(batch, points, 100, 50, 600, Align.center, false);
 
         alienHead.draw(batch, elapsedTime);
-
         batch.end();
     }
 
@@ -75,7 +81,16 @@ public class GameOverScreen extends ScreenAdapter implements InputProcessor {
         elapsedTime = 0;
         Gdx.input.setInputProcessor(this);
     }
-
+    
+    @Override
+    public boolean keyTyped(char character) {
+        if (elapsedTime > 1) {
+            alienGame.newGame();
+        }
+        
+        return true;
+    }
+    
     @Override
     public boolean keyDown(int keycode) {
         return false;
@@ -84,15 +99,6 @@ public class GameOverScreen extends ScreenAdapter implements InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
         return false;
-    }
-
-    @Override
-    public boolean keyTyped(char character) {
-        if (elapsedTime > 1) {
-            alienGame.newGame();
-        }
-
-        return true;
     }
 
     @Override
