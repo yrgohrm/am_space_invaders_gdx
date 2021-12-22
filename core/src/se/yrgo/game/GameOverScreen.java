@@ -84,6 +84,8 @@ public class GameOverScreen extends ScreenAdapter implements InputProcessor {
     
     @Override
     public boolean keyTyped(char character) {
+        // wait a second before accepting key strokes
+        // since the player may hammer the keyboard as part of playing
         if (elapsedTime > 1) {
             alienGame.newGame();
         }
